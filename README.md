@@ -1,83 +1,440 @@
-# Eventora - Full-Stack Event Booking Platform
+# 🎟️ Eventora - Full Stack Event Booking Platform
 
-Eventora is a full-stack MERN application that allows users to seamlessly browse, register, and pay natively without any third party tools. It features an administrative dashboard for event organizers to create and manage free and paid events. All bookings can be managed manually by an admin to handle payments directly.
+<p align="center">
 
-## Features
-- **User Authentication**: Secure login & registration with JWT and bcrypt.
-- **2FA OTP Verification**: 
-  - Mandatory Email OTP to activate your account upon Registration (or delayed login attempts).
-  - Mandatory Email OTP to finalize and secure event ticket booking.
-- **Role-Based Access**: 
-  - **Admin**: Create, edit, and delete events. Confirm and reject all incoming booking requests, mark them as 'Paid' or 'Not Paid'. Access is strictly locked to database-flagged users only.
-  - **User**: Browse events, submit ticket booking requests via OTP, view personal dashboard pending status, and cancel bookings.
-- **Event Management**: Create free and paid events with detailed descriptions, external image URLs, dates, categories, and seating capacity.
-- **Smart Booking System**:
-  - Mandatory 2FA OTP to authorize a booking request.
-  - All booking requests (both free and paid) enter a secure 'Pending' queue for Admin verification.
-  - Seat availability accurately updates and securely validates against overbooking logic.
-- **Admin Analytics Dashboard**: Track live data such as Pending Requests, Total Revenue, and Total Confirmed Paid Clients directly from the admin panel.
-- **Email Notifications**: Automated email delivery upon successful booking confirmation using Nodemailer.
-- **Sleek UI/UX**: Built entirely with React, Tailwind CSS, and polished with micro-interactions.
+![React](https://img.shields.io/badge/React-19-blue?logo=react)
+![Node.js](https://img.shields.io/badge/Node.js-Express-green?logo=node.js)
+![MongoDB](https://img.shields.io/badge/MongoDB-Database-success?logo=mongodb)
+![JWT](https://img.shields.io/badge/JWT-Authentication-orange)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-Styling-38B2AC?logo=tailwind-css)
+![License](https://img.shields.io/badge/License-MIT-blue)
+
+</p>
+
+A complete **MERN Stack Event Booking Platform** featuring secure authentication, Email OTP verification, manual payment approval workflow, admin dashboard, event management, booking management, analytics, and responsive UI.
 
 ---
 
-## 🚀 Setup Instructions
+# 📸 Project Preview
 
-### Prerequisites
-Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
-You will also need a MongoDB database (e.g., [MongoDB Atlas Free Tier](https://www.mongodb.com/cloud/atlas/register)).
+## Booking System Workflow
 
-### 1. Environment Variables Configuration
-Navigate to `server/.env` and fill in the necessary keys:
+<p align="center">
+<img src="./assets/flowchart.png" width="900">
+</p>
+
+---
+
+## System Sequence Diagram
+
+<p align="center">
+<img src="./assets/sequence.png" width="900">
+</p>
+
+---
+
+# ✨ Features
+
+## 👤 User Features
+
+- Secure Registration
+- JWT Authentication
+- Password Encryption (bcrypt)
+- Email OTP Verification
+- Browse Events
+- Search Events
+- Book Free & Paid Events
+- Booking OTP Verification
+- Cancel Booking
+- Personal Dashboard
+- Responsive UI
+
+---
+
+## 👨‍💼 Admin Features
+
+- Secure Admin Login
+- Create Events
+- Update Events
+- Delete Events
+- Approve Bookings
+- Reject Bookings
+- Mark Payment Status
+- Revenue Analytics
+- Pending Booking Dashboard
+- Paid Customer Statistics
+
+---
+
+## 🔐 Security Features
+
+- JWT Authentication
+- Protected Routes
+- Role Based Authorization
+- Password Hashing
+- Email OTP Verification
+- Booking OTP Verification
+- Secure MongoDB Storage
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+- React.js
+- React Router
+- Axios
+- Tailwind CSS
+- React Icons
+- Vite
+
+---
+
+## Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT
+- bcryptjs
+- Nodemailer
+
+---
+
+## Database
+
+MongoDB Atlas
+
+---
+
+# 📂 Project Structure
+
+```
+EventBooking
+│
+├── client
+│   ├── src
+│   │    ├── components
+│   │    ├── context
+│   │    ├── pages
+│   │    ├── utils
+│   │    └── App.jsx
+│   │
+│   └── package.json
+│
+├── server
+│   ├── controllers
+│   ├── middleware
+│   ├── models
+│   ├── routes
+│   ├── utils
+│   ├── seed.js
+│   ├── server.js
+│   └── package.json
+│
+├── assets
+│   ├── flowchart.png
+│   └── sequence.png
+│
+└── README.md
+```
+
+---
+
+# 🔄 Booking Workflow
+
+### User Registration
+
+```
+Register
+      ↓
+Email OTP
+      ↓
+Verify OTP
+      ↓
+Account Activated
+```
+
+---
+
+### Booking Flow
+
+```
+Select Event
+      ↓
+Request Booking OTP
+      ↓
+Receive OTP
+      ↓
+Verify OTP
+      ↓
+Booking Created (Pending)
+      ↓
+Admin Approval
+      ↓
+Booking Confirmed
+      ↓
+Confirmation Email
+```
+
+---
+
+# ⚙️ Installation Guide
+
+## Clone Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/Event-Booking-System.git
+
+cd Event-Booking-System
+```
+
+---
+
+# Backend Setup
+
+```bash
+cd server
+
+npm install
+```
+
+---
+
+# Frontend Setup
+
+```bash
+cd ../client
+
+npm install
+```
+
+---
+
+# Environment Variables
+
+Create
+
+```
+server/.env
+```
+
+Add
+
 ```env
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=supersecretjwtkey_eventora
-EMAIL_USER=your_gmail_address
-EMAIL_PASS=your_gmail_app_password
 PORT=5000
-```
-> **Note**: For `EMAIL_PASS`, you need to generate an "App Password" from your Google Account settings, standard passwords won't work due to 2FA.
 
-### 2. Run from Outer Folder (Single Terminal)
-You can now manage both backend and frontend from the project root:
+MONGO_URI=your_mongodb_connection_string
 
-```bash
-# from Eventora root
-npm install
-npm run install:all
-npm run dev
+JWT_SECRET=your_secret_key
+
+EMAIL_USER=your_email@gmail.com
+
+EMAIL_PASS=your_gmail_app_password
 ```
 
-- `npm run dev` starts both `server` and `client` together using `concurrently`.
-- `npm run dev:all` installs dependencies (server + client) and starts both in one command.
-- `npm run start` runs backend `start` + frontend `preview` together.
+---
 
-### 3. Install Dependencies
-Open two separate terminals for the backend and frontend.
+# Run Backend
 
-**Backend Terminal:**
 ```bash
 cd server
-npm install --legacy-peer-deps
+
+npm run dev
 ```
 
-**Frontend Terminal:**
+Runs on
+
+```
+http://localhost:5000
+```
+
+---
+
+# Run Frontend
+
 ```bash
 cd client
-npm install
+
+npm run dev
 ```
 
-### 4. Run the Application Local Servers
-**Run Backend:**
+Runs on
+
+```
+http://localhost:5173
+```
+
+---
+
+# Seed Database
+
+Populate MongoDB with demo data.
+
 ```bash
 cd server
-npm run dev
-```
-*(Server will run on `http://localhost:5000`)*
 
-**Run Frontend:**
-```bash
-cd client
-npm run dev
+npm run seed
 ```
-*(Client will run on a local port provided by Vite, typically `http://localhost:5173`)*
+
+Default credentials
+
+### Admin
+
+```
+Email
+
+admin@eventora.com
+
+Password
+
+password123
+```
+
+---
+
+### User
+
+```
+Email
+
+user@eventora.com
+
+Password
+
+password123
+```
+
+---
+
+# API Endpoints
+
+## Authentication
+
+```
+POST    /api/auth/register
+
+POST    /api/auth/login
+
+POST    /api/auth/verify-otp
+```
+
+---
+
+## Events
+
+```
+GET     /api/events
+
+GET     /api/events/:id
+
+POST    /api/events
+
+PUT     /api/events/:id
+
+DELETE  /api/events/:id
+```
+
+---
+
+## Bookings
+
+```
+POST    /api/bookings/send-otp
+
+POST    /api/bookings
+
+GET     /api/bookings/my
+
+PUT     /api/bookings/:id/confirm
+
+DELETE  /api/bookings/:id
+```
+
+---
+
+# Authentication Flow
+
+```
+User Login
+      ↓
+JWT Generated
+      ↓
+Stored in Local Storage
+      ↓
+Sent in Authorization Header
+      ↓
+Backend Middleware
+      ↓
+Protected Routes
+```
+
+---
+
+# Email Services
+
+The application automatically sends emails for
+
+- Account Verification OTP
+- Booking OTP
+- Booking Confirmation
+
+Powered by
+
+- Nodemailer
+- Gmail SMTP
+
+---
+
+# Analytics Dashboard
+
+The Admin Dashboard displays
+
+- Total Revenue
+- Paid Customers
+- Pending Bookings
+- Total Events
+- Remaining Seats
+
+---
+
+# Future Improvements
+
+- Stripe Payment Gateway
+- Razorpay Integration
+- QR Ticket Generation
+- Event Categories
+- Google Login
+- Forgot Password
+- Event Reviews
+- Event Ratings
+- Image Upload (Cloudinary)
+- PDF Ticket Download
+- Admin Charts
+- Dashboard Graphs
+
+---
+
+# Author
+
+**Biswajit Sahoo**
+
+GitHub
+
+https://github.com/BiswajitSahoo-Programmer
+
+LinkedIn
+
+https://linkedin.com/in/YOUR_LINKEDIN
+
+---
+
+# ⭐ Support
+
+If you like this project,
+
+Please consider giving it a ⭐ on GitHub.
+
+It helps the project reach more developers!

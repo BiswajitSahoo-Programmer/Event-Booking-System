@@ -20,7 +20,7 @@ A complete **MERN Stack Event Booking Platform** featuring secure authentication
 ## Booking System Workflow
 
 <p align="center">
-<img src="./assets/flowchart.png" width="900">
+<img src="fc.png" width="900">
 </p>
 
 ---
@@ -28,7 +28,7 @@ A complete **MERN Stack Event Booking Platform** featuring secure authentication
 ## System Sequence Diagram
 
 <p align="center">
-<img src="./assets/sequence.png" width="900">
+<img src="dfd.png" width="900">
 </p>
 
 ---

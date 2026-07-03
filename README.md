@@ -427,7 +427,7 @@ https://github.com/BiswajitSahoo-Programmer
 
 LinkedIn
 
-https://linkedin.com/in/YOUR_LINKEDIN
+https://linkedin.com/in/biswajit-sahoo-1b6940245/
 
 ---
 
